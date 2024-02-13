@@ -1,0 +1,6 @@
+property/*
+Lib_RL_Weather.code-workspace
+Lib_RL_Weather.mtlib
+library/public/data/*
+*.cmpgn
+TODO.txt

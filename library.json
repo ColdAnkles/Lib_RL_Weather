@@ -1,0 +1,14 @@
+{
+  "name": "Lib:RLWeather",
+  "version": "1.0",
+  "website": "",
+  "gitUrl": "https://github.com/ColdAnkles/Lib_RL_Weather",
+  "authors": ["Cold_Ankles"],
+  "license": "",
+  "namespace": "ca.rlw",
+  "description": "Ravenland Weather Addon for MapTool",
+  "shortDescription": "Ravenland Weather",
+  "allowsUriAccess": true,
+  "licenseFile": "",
+  "readMeFile": ""
+}

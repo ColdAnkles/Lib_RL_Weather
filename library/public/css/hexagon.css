@@ -1,0 +1,41 @@
+body {
+	overflow: hidden;
+}
+
+table, th, td {
+  border: 0px solid black;
+  width:1;
+  height:1;
+  text-align: center;
+}
+
+.north {
+	text-align: center;
+}
+
+.center{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.south {
+	transform: rotate(180deg);
+	text-align: center;
+}
+
+.northeast { 
+	transform: translate(0px,100px) rotate(45deg);
+}
+
+.northwest {
+	transform: translate(0px,100px) rotate(-45deg);  
+}
+
+.southeast { 
+	transform: translate(0px,-100px) rotate(135deg);
+}
+
+.southwest {
+	transform: translate(0px,-100px) rotate(-135deg);  
+}

@@ -1,0 +1,7 @@
+[h: seasonList = json.append("[]","Early Spring","Late Spring","Early Summer","Late Summer","Early Autumn","Late Autumn","Early Winter","Late Winter")]
+[h: currentSeason = getLibProperty("season","Lib:ca.rlw")]
+[h: seasonIndex = json.indexOf(seasonList, currentSeason)]
+[h: test = input("setSeason|"+seasonList+"|Set Season|LIST|DELIMITER=JSON SELECT="+seasonIndex+" VALUE=STRING")]
+[h: abort(test)]
+[h: setLibProperty("season",setSeason,"Lib:ca.rlw")]
+[h: ca.rlw.updateUI()]

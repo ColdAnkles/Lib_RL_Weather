@@ -1,0 +1,8 @@
+[h:Token = "Lib:ca.rlw")]
+[h: newX = json.get(macro.args,"x")]
+[h: newY = json.get(macro.args,"y")]
+[h: currWind=getLibProperty("currentWind","Lib:ca.rlw")]
+[h: currWind = json.set(currWind,"x",newX)]
+[h: currWind = json.set(currWind,"y",newY)]
+[h: setLibProperty("currentWind",currWind,"Lib:ca.rlw")]
+[h: ca.rlw.updateUI()]

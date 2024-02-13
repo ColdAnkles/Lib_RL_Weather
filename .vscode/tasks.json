@@ -1,0 +1,13 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+		{
+            "label": "build-simple",
+            "type": "shell",
+            "command": "rm Lib_RL_Weather.mtlib; 7z a -tzip Lib_RL_Weather.mtlib '@.vscode/listfile.txt'",
+            "problemMatcher": []
+		}
+    ]
+}
