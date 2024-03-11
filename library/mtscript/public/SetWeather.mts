@@ -5,4 +5,3 @@
 [h: currWeather = json.set(currWeather,"x",newX)]
 [h: currWeather = json.set(currWeather,"y",newY)]
 [h: setLibProperty("currentWeather",currWeather,"Lib:ca.rlw")]
-[h: ca.rlw.updateUI()]

@@ -5,4 +5,3 @@
 [h: currWind = json.set(currWind,"x",newX)]
 [h: currWind = json.set(currWind,"y",newY)]
 [h: setLibProperty("currentWind",currWind,"Lib:ca.rlw")]
-[h: ca.rlw.updateUI()]

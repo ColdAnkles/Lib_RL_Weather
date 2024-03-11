@@ -1,10 +1,12 @@
 "use strict";
 
-function getImage(imageName, srcLocOnly=false){
-    //MapTool.chat.broadcast(imageName);
+let imageDict = null;
 
-	imageName = imageName.replaceAll(" ","_");
-	let imageDict = JSON.parse(read_data("image_dict"));
+function getImage(imageName, srcLocOnly = false) {
+	//MapTool.chat.broadcast(imageName);
+
+	imageName = imageName.replaceAll(" ", "_");
+	if (imageDict == null) { imageDict = JSON.parse(read_data("image_dict")); }
 	//MapTool.chat.broadcast(JSON.stringify(imageDict));
 	let imageSizeH = 180;
 	let imageSizeW = 180;
@@ -17,6 +19,5 @@ function getImage(imageName, srcLocOnly=false){
 	//MapTool.chat.broadcast(returnText);
 	return returnText;
 }
-
 
 MTScript.registerMacro("ca.rlw.getImage", getImage);

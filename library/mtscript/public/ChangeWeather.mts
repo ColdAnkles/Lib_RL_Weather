@@ -1,70 +1,68 @@
 
-[h:Token = "Lib:ca.rlw")]
+[h:Token = "Lib:ca.rlw"]
+
+[h: currentConditionsCoords = getLibProperty("currentWeather",Token)]
+[h: currentSeason = getLibProperty("season", Token)]
+[h: seasonMap = getLibProperty("season_map", Token)]
+[h: seasonFlower = json.get(json.get(seasonMap, currentSeason), "flower")]
+[h: seasonFlower = getLibProperty(seasonFlower, Token)]
+[h: imageDict = getLibProperty("image_dict", Token)]
 
 [h, if(json.contains(macro.args,"submit")), code:{
-	[h: sendData = json.get(macro.args,"submitData")]
-	[MACRO("SetWeather@Lib:ca.rlw"): sendData]
+	[h: sendData = json.fromStrProp(json.get(macro.args,"submit"))]
+	[h, MACRO("SetWeather@Lib:ca.rlw"): sendData]
+};{}]
+
+[h, if(json.contains(macro.args,"Done")), code:{
 	[h: vis =  isDialogVisible("Change Weather")]
 	[h, if(vis), code:{
 		[h: closeDialog("Change Weather")]
 	}]
-	[h: return(0)]
 	[h: ca.rlw.updateUI()]
+	[h: macro.return=""]
+	[h: return(0)]
 };{}]
 
-[h, if(json.contains(macro.args,"move_button")), code:{
-	[h: weatherX=json.get(json.get(macro.args,"move_button"),"x"))]
-	[h: weatherY=json.get(json.get(macro.args,"move_button"),"y"))]
-	[h: old_x=json.get(json.get(macro.args,"move_button"),"oldX"))]
-	[h: old_y=json.get(json.get(macro.args,"move_button"),"oldY"))]
-
-	[h: coordWrapData = json.set("{}","oldX",old_x,"oldY",old_y,"newX",weatherX,"newY",weatherY)]
-	[MACRO("WeatherCoordinateWrap@Lib:ca.rlw"): coordWrapData]
-	[h: weatherX = json.get(macro.return,"newX")]
-	[h: weatherY = json.get(macro.return,"newY")]
-	[h: currentSeason=getLibProperty("season","Lib:ca.rlw")]
-[h: season_map = getLibProperty("season_map","Lib:ca.rlw")]
-	[h: seasonFlower=getLibProperty(json.get(json.get(season_map,currentSeason),"flower"),"Lib:ca.rlw")]
-	[h: weather=json.get(json.get(json.get(seasonFlower,string(weatherX)),string(weatherY)),"weather")]
-};{
-	[MACRO("GetWeather@Lib:ca.rlw"): ""]
-	[h: weather=json.get(macro.return,"weather")]
-	[h: weatherX=number(json.get(macro.return,"x"))]
-	[h: weatherY=number(json.get(macro.return,"y"))]
-}]
-[dialog5("Change Weather","width=640; height=700; closeButton=0; temporary=1;"):{
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="lib://ca.rlw/css/hexagon.css">
-</head>
-<body>
-[h: changeWeatherMacro = macroLinkText("ChangeWeather@Lib:ca.rlw", "all","",Token)]
-<form name="changeWeather" action="[r:changeWeatherMacro]">
-<table class='center'>
-<tr>
-<td>[h: newCoords="{x:"+string(weatherX)+", y:"+string(weatherY-1)+", oldX:"+string(weatherX)+", oldY:"+string(weatherY)+"}"]<input type='image' src='[r: js.ca.rlw.getImage("up_arrow", true)]' class="northwest" name="move_button" alt="NW" value='[r: newCoords ]' width=190 height=190></input></td>
-<td>[h: newCoords="{x:"+string(weatherX-1)+", y:"+string(weatherY)+", oldX:"+string(weatherX)+", oldY:"+string(weatherY)+"}"]<input type='image' src='[r: js.ca.rlw.getImage("up_arrow", true)]' class="north" name="move_button" alt="N" value='[r: newCoords ]' width=190 height=190></input></td>
-<td>[h: newCoords="{x:"+string(weatherX-1)+", y:"+string(weatherY+1)+", oldX:"+string(weatherX)+", oldY:"+string(weatherY)+"}"]<input type='image' src='[r: js.ca.rlw.getImage("up_arrow", true)]' class="northeast" name="move_button" alt="NE" value='[r: newCoords]' width=190 height=190></input></td>
-</tr>
-<tr>
-<td></td>
-<td width=1 height=1>[r: weather]<br /><img src='[r: js.ca.rlw.getImage(weather, true)]' class="center" width=190 height=190></img></td>
-<td></td>
-</tr>
-<tr>
-<td>[h: newCoords="{x:"+string(weatherX+1)+", y:"+string(weatherY-1)+", oldX:"+string(weatherX)+", oldY:"+string(weatherY)+"}"]<input type= 'image' src='[r: js.ca.rlw.getImage("up_arrow", true)]' class="southwest" name="move_button" alt="NW" value='[r: newCoords ]' width=190 height=190></input></td>
-<td>[h: newCoords="{x:"+string(weatherX+1)+", y:"+string(weatherY)+", oldX:"+string(weatherX)+", oldY:"+string(weatherY)+"}"]<input type= 'image' src='[r: js.ca.rlw.getImage("up_arrow", true)]' class="south" name="move_button" alt="NW" value='[r: newCoords ]' width=190 height=190></input></td>
-<td>[h: newCoords="{x:"+string(weatherX)+", y:"+string(weatherY+1)+", oldX:"+string(weatherX)+", oldY:"+string(weatherY)+"}"]<input type= 'image' src='[r: js.ca.rlw.getImage("up_arrow", true)]' class="southeast" name="move_button" alt="NW" value='[r: newCoords ]' width=190 height=190></input></td>
-</tr>
-<tr>
-<td></td>
-<td>[h: newCoords="{x:"+string(weatherX)+", y:"+string(weatherY)+"}"]
-<input type="hidden" name="submitData" value='[r: newCoords]'></input>
-<input type="submit" name="submit" value="Set Weather"></input></td>
-<td></td>
-</tr>
-</table>
-</form>
-</body>
-</html>
+[h: type="weather"]
+[dialog5("Change Weather","width=620; height=700; closeButton=0; temporary=1;"):{
+	<html>
+		<head><link rel='stylesheet' type='text/css' href='lib://ca.rlw/css/hexGrid.css'></head>
+		<form action='macro://ChangeWeather@Lib:ca.rlw/self/impersonated?'>
+		<table style='width:100%'><tr align='center'><td>
+		<div class='hex_blank hex-row'></div>
+		<div id='-20' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, -2), 0), type), true)]' value='x=-2;y=0' name='submit'/></div>
+		<div class='hex_blank hex-row'></div>
+		<div class='even'><div id='-1-1' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, -1), -1), type), true)]' value='x=-1;y=-1' name='submit'/></div>
+        	<div id='-21' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, -2), 1), type), true)]' value='x=-2;y=1' name='submit'/></div>
+        	<div class='hex_blank hex-row'></div>
+    	</div>
+		<div id='0-2' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, 0), -2), type), true)]' value='x=0;y=-2' name='submit'/></div>
+		<div id='-10' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, -1), 0), type), true)]' value='x=-1;y=0' name='submit'/></div>
+		<div id='-2-2' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, -2), 2), type), true)]' value='x=-2;y=2' name='submit'/></div>
+		<div class='even'>
+			<div id='-0-1' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, 0), -1), type), true)]' value='x=0;y=-1' name='submit'/></div>
+			<div id='-11' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, -1), 1), type), true)]' value='x=-1;y=1' name='submit'/></div>
+			<div class='hex_blank hex-row'></div>
+		</div>
+		<div id='1-2' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, 1), -2), type), true)]' value='x=1;y=-2' name='submit'/></div>
+		<div id='00' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, 0), 0), type), true)]' value='x=0;y=0' name='submit'/></div>
+		<div id='-12' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, -1), 2), type), true)]' value='x=-1;y=2' name='submit'/></div>
+		<div class='even'>
+			<div id='1-1' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, 1), -1), type), true)]' value='x=1;y=-1' name='submit'/></div>
+			<div id='01' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, 0), 1), type), true)]' value='x=0;y=1' name='submit'/></div>
+			<div class='hex_blank hex-row'></div>
+		</div>
+		<div id='2-2' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, 2), -2), type), true)]' value='x=2;y=-2' name='submit'/></div>
+		<div id='10' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, 1), 0), type), true)]' value='x=1;y=0' name='submit'/></div>
+		<div id='02' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, 0), 2), type), true)]' value='x=0;y=2' name='submit'/></div>
+		<div class='even'>
+			<div id='2-1' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, 2), -1), type), true)]' value='x=2;y=-1' name='submit'/></div>
+			<div id='11' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, 1), 1), type), true)]' value='x=1;y=1' name='submit'/></div>
+			<div class='hex_blank hex-row'></div>
+		</div>
+		<div class='hex_blank hex-row'></div>
+		<div id='20' class='hex hex-row'><input type='image' src='[r: js.ca.rlw.getImage(json.get(json.get(json.get(seasonFlower, 2), 0), type), true)]' value='x=2;y=0' name='submit'/></div>
+		<div class='hex_blank hex-row'></div>
+		</td></tr><tr align='center'><td><input type='submit' onclick='doneChanging([r: type])' name='Done' value='Done'/></td></tr></table></form>
+	</html>
 }]
