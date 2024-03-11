@@ -1,4 +1,4 @@
-[h:Token = "Lib:ca.rlw")]
+[h:Token = "Lib:ca.rlw"]
 [h: currentWeather = getLibProperty("currentWeather",Token)]
 [h: currWeather_x = json.get(currentWeather,"x")]
 [h: currWeather_y = json.get(currentWeather,"y")]

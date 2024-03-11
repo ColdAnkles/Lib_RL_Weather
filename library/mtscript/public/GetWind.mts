@@ -1,4 +1,4 @@
-[h:Token = "Lib:ca.rlw")]
+[h:Token = "Lib:ca.rlw"]
 [h: currentWind = getLibProperty("currentWind",Token)]
 [h: currWind_x = json.get(currentWind,"x")]
 [h: currWind_y = json.get(currentWind,"y")]
