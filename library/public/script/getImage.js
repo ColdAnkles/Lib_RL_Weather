@@ -1,9 +1,9 @@
 "use strict";
 
-function getImage(imageName, srcLocOnly=false){
-    //MapTool.chat.broadcast(imageName);
+function getImage(imageName, srcLocOnly = false) {
+	//MapTool.chat.broadcast(imageName);
 
-	imageName = imageName.replaceAll(" ","_");
+	imageName = imageName.replaceAll(" ", "_");
 	let imageDict = JSON.parse(read_data("image_dict"));
 	//MapTool.chat.broadcast(JSON.stringify(imageDict));
 	let imageSizeH = 180;
