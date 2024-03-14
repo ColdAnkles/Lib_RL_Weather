@@ -20,22 +20,21 @@ table, th, td {
 }
 
 .south {
-	transform: rotate(180deg);
 	text-align: center;
 }
 
 .northeast { 
-	transform: translate(0px,100px) rotate(45deg);
+	transform: translate(0px,100px);
 }
 
 .northwest {
-	transform: translate(0px,100px) rotate(-45deg);  
+	transform: translate(0px,100px);  
 }
 
 .southeast { 
-	transform: translate(0px,-100px) rotate(135deg);
+	transform: translate(0px,-100px);
 }
 
 .southwest {
-	transform: translate(0px,-100px) rotate(-135deg);  
+	transform: translate(0px,-100px);  
 }
