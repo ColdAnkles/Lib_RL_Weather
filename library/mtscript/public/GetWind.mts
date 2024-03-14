@@ -1,7 +1,12 @@
 [h:Token = "Lib:ca.rlw"]
-[h: currentWind = getLibProperty("currentWind",Token)]
-[h: currWind_x = json.get(currentWind,"x")]
-[h: currWind_y = json.get(currentWind,"y")]
+[h, if(macro.args==""), code:{
+    [h: currentWind = getLibProperty("currentWind",Token)]
+    [h: currWind_x = json.get(currentWind,"x")]
+    [h: currWind_y = json.get(currentWind,"y")]
+};{
+    [h: currWind_x = json.get(macro.args,"x")]
+    [h: currWind_y = json.get(macro.args,"y")]
+}]
 [h: currentSeason = getLibProperty("season","Lib:ca.rlw")]
 [h: season_map = getLibProperty("season_map","Lib:ca.rlw")]
 [h: seasonFlower = getLibProperty(json.get(json.get(season_map,currentSeason),"flower"),"Lib:ca.rlw")]
