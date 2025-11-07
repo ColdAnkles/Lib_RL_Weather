@@ -2,6 +2,15 @@
 [h: wind=ca.rlw.GetWind()]
 [h: weatherIcon = json.get(weather,"weather")]
 [h: windIcon = json.get(wind,"wind")]
+[h: overlayDisabled = getLibProperty("overlayDisabled","Lib:ca.rlw")]
+[h, if(overlayDisabled==""), code:{
+	[h: setLibProperty("overlayDisabled",false,"Lib:ca.rlw")]
+	[h: overlayDisabled=false]
+};{}]
+[h, if(overlayDisabled), code:{
+	[h: closeOverlay("rlWeatherOverlay")]
+	[h: return(1,0)]
+};{}]
 [overlay("rlWeatherOverlay"):{
 <html>
 <table style='color:white;text-align:center;float:right'>

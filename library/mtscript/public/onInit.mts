@@ -39,3 +39,4 @@
 }]
 
 [h: setLibProperty("image_dict", imageDict, "Lib:ca.rlw")]
+[h: ca.rlw.updateUI()]

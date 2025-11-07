@@ -41,4 +41,5 @@
 [h: setLibProperty("image_dict", imageDict, "Lib:ca.rlw")]
 
 [h: ca.rlw.Setup()]
-[h: ca.rlw.Create_GM_Macros()]
+[h: js.ca.rlw.createGMMacros()]
+[h: ca.rlw.updateUI()]

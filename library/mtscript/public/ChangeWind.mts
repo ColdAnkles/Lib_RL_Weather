@@ -1,5 +1,5 @@
 
-[h:Token = "Lib:ca.rlw")]
+[h:Token = "Lib:ca.rlw"]
 
 [h, if(json.contains(macro.args,"submit")), code:{
 	[h: sendData = json.get(macro.args,"submitData")]

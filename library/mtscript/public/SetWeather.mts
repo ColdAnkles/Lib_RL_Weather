@@ -1,4 +1,4 @@
-[h:Token = "Lib:ca.rlw")]
+[h:Token = "Lib:ca.rlw"]
 [h: newX = json.get(macro.args,"x")]
 [h: newY = json.get(macro.args,"y")]
 [h: currWeather=getLibProperty("currentWeather","Lib:ca.rlw")]
