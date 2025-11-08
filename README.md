@@ -4,6 +4,9 @@ Impelmentes the Ravenland Weather System as Described in https://preview.driveth
 * Different Weather
 * Different Wind
 * Changes Dependant on Seasons
+* Simple Forecast Style Overlay in Top Right
+<img width="186" height="102" alt="image" src="https://github.com/user-attachments/assets/58722653-fc1a-4917-b311-12e0edaae91c" />
+
 
 # Download
 Visit [the releases page](https://github.com/ColdAnkles/Lib_RL_Weather/releases) and download the version of the `.mtlib` file as desired.
