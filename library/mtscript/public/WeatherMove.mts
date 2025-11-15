@@ -1,4 +1,4 @@
-[h:Token = "Lib:ca.rlw")]
+[h:Token = "Lib:ca.rlw"]
 [h: season_map = getLibProperty("season_map","Lib:ca.rlw")]
 [h: currentSeason=getLibProperty("season","Lib:ca.rlw")]
 [h: currWeather=getLibProperty("currentWeather","Lib:ca.rlw")]
