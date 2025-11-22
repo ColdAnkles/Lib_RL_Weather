@@ -4,8 +4,6 @@
     [h: autoWeather = json.set("{}","enabled",false)]
 };{}]
 
-[h: broadcast(autoWeather)]
-
 [h, if(json.get(autoWeather,"enabled")==false), code:{
     [h: autoWeather = json.set(autoWeather,"enabled",true)]
     [h: setLibProperty("autoWeather",autoWeather,"Lib:ca.rlw")]
@@ -15,5 +13,3 @@
     [h: autoWeather = json.set(autoWeather,"enabled",false)]
     [h: setLibProperty("autoWeather",autoWeather,"Lib:ca.rlw")]
 }]
-
-[h: broadcast(autoWeather)]
