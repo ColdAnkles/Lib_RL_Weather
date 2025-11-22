@@ -9,6 +9,11 @@ function createGMMacros() {
     for (var m in GMMacros) {
         createMacro(GMMacros[m], "gm");
     }
+
+    if(addonExists("Lib:DateTime")){
+        createMacro({"label":"Toggle Auto Weather","playerEditable":0,"command":"[h: ca.rlw.ToggleAutoWeather()]","tooltip":"Enable/Disable Auto Weather"}, "gm");
+    }
+
 }
 
 MTScript.registerMacro("ca.rlw.createGMMacros", createGMMacros);
